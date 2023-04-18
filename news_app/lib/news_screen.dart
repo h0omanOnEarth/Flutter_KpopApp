@@ -4,9 +4,39 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:news_app/detail_news_screen.dart';
 import 'package:news_app/model/Article.dart';
 
-class NewsScreen extends StatelessWidget {
+class NewsScreen extends StatefulWidget {
   static const routeName = '/news_list';
   const NewsScreen({super.key});
+
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Index 0: Home',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 1: Explore',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 2: Login',
+      style: optionStyle,
+    ),
+  ];
+
+  @override
+  State<NewsScreen> createState() => _NewsScreenState();
+}
+
+class _NewsScreenState extends State<NewsScreen> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +55,25 @@ class NewsScreen extends StatelessWidget {
               },
             );
           }),
+          bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.explore),
+            label: 'Explore',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.login),
+            label: 'Login',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.blue[800],
+        onTap: _onItemTapped,
+      ),
     );
   }
 }

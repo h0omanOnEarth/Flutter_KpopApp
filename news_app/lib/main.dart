@@ -32,8 +32,8 @@ class MyApp extends StatelessWidget {
               article: ModalRoute.of(context)?.settings.arguments as Article),
           DetailNewsScreen.routeName: (context) => DetailNewsScreen(
               article: ModalRoute.of(context)?.settings.arguments as Article),
-          DetailKdramaScren.routeName :(context) => DetailKdramaScren(
-            kdrama: ModalRoute.of(context)?.settings.arguments as KoreanDrama)
+          // DetailKdramaScren.routeName :(context) => DetailKdramaScren(
+          //   kdrama: ModalRoute.of(context)?.settings.arguments as KoreanDrama)
         }
         // home: const MyHomePage(title: 'Flutter Demo Home Page'),
         );
