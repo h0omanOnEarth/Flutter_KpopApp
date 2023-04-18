@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         // theme: ThemeData(
         //     primarySwatch: Colors.purple,
         //     visualDensity: VisualDensity.adaptivePlatformDensity),
-        initialRoute: KdramaScreen.routeName,
+        initialRoute: NewsScreen.routeName,
         routes: {
           NewsScreen.routeName: (context) => const NewsScreen(),
           KdramaScreen.routeName: (context) => const KdramaScreen(),
@@ -32,7 +32,8 @@ class MyApp extends StatelessWidget {
               article: ModalRoute.of(context)?.settings.arguments as Article),
           DetailNewsScreen.routeName: (context) => DetailNewsScreen(
               article: ModalRoute.of(context)?.settings.arguments as Article),
-          DetailKdramaScren.routeName :(context) => DetailKdramaScren(kdrama: ModalRoute.of(context)?.settings.arguments as KoreanDrama)
+          DetailKdramaScren.routeName :(context) => DetailKdramaScren(
+            kdrama: ModalRoute.of(context)?.settings.arguments as KoreanDrama)
         }
         // home: const MyHomePage(title: 'Flutter Demo Home Page'),
         );
@@ -58,6 +59,29 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+    int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Index 0: Home',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 1: Explore',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 2: Login',
+      style: optionStyle,
+    ),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
   int _counter = 0;
 
   void _incrementCounter() {
@@ -114,6 +138,25 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.explore),
+            label: 'Explore',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.login),
+            label: 'Login',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.blue[800],
+        onTap: _onItemTapped,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,

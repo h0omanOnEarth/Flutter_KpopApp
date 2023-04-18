@@ -4,7 +4,6 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:news_app/model/Article.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-
 class MoreNewsScreen extends StatelessWidget {
   static const routeName = '/more_news';
   final Article article;
